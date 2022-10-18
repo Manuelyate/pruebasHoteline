@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('actividades_culturales', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Documentacion')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('TipoAct');
+            $table->date('Fecha');
+            $table->datetime('Hora');
+            $table->bigInteger('idEventos')->unsigned();
+            $table->foreign('idEventos')
+                  ->references('id')
+                  ->on('eventos');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('actividades_culturales');
     }
 };

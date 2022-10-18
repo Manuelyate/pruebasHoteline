@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\TipoDocumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('inicio/index');
 });
 
 Route::get('/usuarios', function(){
     return view('usuarios/index');
 });
+
+Route::get('/menuprincipal', function(){
+    return view('menuprincipal/index');
+});
+
+Route::get('/servicios', function(){
+    return view('servicios/index');
+});
+
+Route::resource('cliente', ClienteController::class);
+Route::resource('tipoDocumento', TipoDocumentoController::class);
